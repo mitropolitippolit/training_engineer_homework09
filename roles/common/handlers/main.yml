@@ -1,0 +1,7 @@
+---
+# handlers file for common
+- name: checks services
+  systemd: name={{item}} state=started
+  loop: "{{common_svc_list}}"
+  loop_control:
+    label: "{{item}}"

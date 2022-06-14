@@ -1,0 +1,8 @@
+---
+# defaults file for common
+common_pkg_list:
+  - docker.io
+  - python3-docker
+common_svc_list:
+  - docker
+  - containerd

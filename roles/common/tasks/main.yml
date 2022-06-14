@@ -1,0 +1,13 @@
+---
+# tasks file for common
+- name: checks required packages
+  apt: name={{item}} state=present
+  loop: "{{common_pkg_list}}"
+  loop_control:
+    label: "{{item}}"
+  when:
+    - common_pkg_list is defined
+    - common_svc_list is defined
+  tags:
+    - pkg
+  notify: checks services
