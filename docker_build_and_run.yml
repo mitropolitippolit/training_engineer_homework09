@@ -1,0 +1,6 @@
+---
+- name: checks common services and packages
+  hosts: all
+  become: true
+  roles:
+    - role: common
