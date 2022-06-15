@@ -1,0 +1,40 @@
+---
+# tasks file for build_server
+- name: checks a build dir
+  file: state=directory dest={{bld_dir_path}} mode=0755
+  tags:
+    - dir
+
+- name: checks a registry data dir
+  file: state=directory dest={{priv_reg_dir_path}} mode=0755
+  tags:
+    - dir
+
+- name: checks an insecure private registry container
+  docker_container:
+    name: registry
+    image: registry:2
+    ports:
+      - 5000:5000
+    volumes:
+      - "{{priv_reg_dir_path}}":/var/lib/registry
+    detach: true
+    restart_policy: always
+    state: started
+  tags:
+    - reg
+
+- name: checks the Dockerfile
+  copy: src=Dockerfile dest={{dockerfile_dst_path}} mode=0644
+  tags:
+    - conf
+
+- name: checks the app image
+  docker_image:
+    name: "{{app_img_tag}}"
+    build: path="{{bld_dir_path}}"
+    source: build
+    state: present
+    push: true
+  tags:
+    - build

@@ -1,0 +1,7 @@
+---
+# defaults file for build_server
+bld_dir_path: /data/build
+priv_reg_dir_path: /data/reg
+priv_reg_ip_addr:
+app_img_tag: "{{priv_reg_ip_addr|default('localhost')}}:5000/myapp:latest"
+dockerfile_dst_path: "{{bld_dir_path}}/Dockerfile"
