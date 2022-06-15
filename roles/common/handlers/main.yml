@@ -5,3 +5,10 @@
   loop: "{{common_svc_list}}"
   loop_control:
     label: "{{item}}"
+  when:
+    - common_svc_list is defined
+    - common_svc_list
+
+- name: restarts docker service
+  systemd: name=docker state=restarted
+

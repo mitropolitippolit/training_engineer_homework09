@@ -6,3 +6,4 @@ common_pkg_list:
 common_svc_list:
   - docker
   - containerd
+priv_reg_ip_addr:
