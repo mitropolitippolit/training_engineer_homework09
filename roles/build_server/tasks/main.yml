@@ -6,7 +6,7 @@
     - dir
 
 - name: checks a registry data dir
-  file: state=directory dest={{priv_reg_dir_path}} mode=0755
+  file: state=directory dest={{reg_dir_path}} mode=0755
   tags:
     - dir
 
@@ -17,7 +17,7 @@
     ports:
       - 5000:5000
     volumes:
-      - "{{priv_reg_dir_path}}:/var/lib/registry"
+      - "{{reg_dir_path}}:/var/lib/registry"
     detach: true
     restart_policy: always
     state: started
