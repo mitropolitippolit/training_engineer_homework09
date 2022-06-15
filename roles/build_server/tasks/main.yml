@@ -17,7 +17,7 @@
     ports:
       - 5000:5000
     volumes:
-      - "{{priv_reg_dir_path}}":/var/lib/registry
+      - "{{priv_reg_dir_path}}:/var/lib/registry"
     detach: true
     restart_policy: always
     state: started
@@ -26,15 +26,17 @@
 
 - name: checks the Dockerfile
   copy: src=Dockerfile dest={{dockerfile_dst_path}} mode=0644
+  register: dockerfile
   tags:
     - conf
 
 - name: checks the app image
   docker_image:
     name: "{{app_img_tag}}"
-    build: path="{{bld_dir_path}}"
-    source: build
+    path: "{{bld_dir_path}}"
     state: present
     push: true
+  when:
+    - dockerfile is changed
   tags:
     - build
