@@ -1,0 +1,6 @@
+---
+# defaults file for app_server
+app_cnt_cmd: /bin/bash
+app_cnt_img: localhost:5000/test:latest
+app_cnt_name: test
+app_cnt_port_list: ["8080:8080"]
