@@ -15,6 +15,10 @@ ansible_ssh_private_key_file=/root/.ssh/id_rsa
 # custom vars
 priv_reg_ip_addr=192.168.10.10
 
+[pkg:vars]
+# custom vars
+app_img_tag="{{priv_reg_ip_addr}}:5000/myapp:latest"
+
 [app:vars]
 # custom vars
 app_cnt_name=app
