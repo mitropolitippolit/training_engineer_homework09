@@ -5,12 +5,7 @@
     name: "{{app_cnt_name}}"
     image: "{{app_cnt_img}}"
     command: "{{app_cnt_cmd}}"
-    exposed_ports: "{{app_cnt_port_list}}"
+    ports: "{{app_cnt_port_list}}"
     state: started
-  when:
-    - app_cnt_cmd
-    - app_cnt_img
-    - app_cnt_name
-    - app_cnt_port_list
   tags:
     - run
